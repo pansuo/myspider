@@ -1,0 +1,6 @@
+this app is a project as a caurse project of MSE-wlyq class
+this app do grab every pages of a search resault from baidu...
+baidu can detect if the page download is excuted by app or humen+browser, and baidu will disconnect the client if app case detected...
+so this app intents to grab all pages while not let baidu feeling
+that the client is not a browser but an app.
+I guess you understand, yeah it's non-sense and just a homework project!
