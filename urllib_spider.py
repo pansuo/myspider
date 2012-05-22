@@ -48,7 +48,7 @@ if __name__ == '__main__':
 	req = urllib2.Request(url=curUrl,data=None,headers=header_page0)
 #get the first page 
 	content = urllib2.urlopen(req).read()
-	handler = open('urlsave_all.htm','wr')
+	handler = open('urlsave_all.htm','w')
 	handler.write(content)
 	lastUrl = curUrl
 	curPage = 10
