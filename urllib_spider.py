@@ -13,7 +13,10 @@ if argc > 1:
 else:
 	keyword = u'陈光诚'
 
-kw_gbk = keyword.encode('gbk')
+#keyword must be encoded into 
+#gbk or gb18030
+
+kw_gbk = keyword.encode('gb18030') 
 m = {'wd':kw_gbk,}
 keyword_url = urllib.urlencode(m)
 header_page0 = {
