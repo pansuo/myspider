@@ -29,7 +29,7 @@ if __name__ == '__main__':
 
 	curPage = 10
 #get left pages ... 
-	while (curPage < 300):
+	while (curPage < 100):
 		header_pageX = {
 		 'User-Agent':'Mozilla/5.0 (Windows NT 6.1; rv:12.0) Gecko/20100101 Firefox/12.0',
 		 'Accept':'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
@@ -49,7 +49,7 @@ if __name__ == '__main__':
 		lastUrl = curUrl
 		curPage += 10
 	else:
-		print 'all 30 page downloaded'
+		print 'all %d pages downloaded' % (curPage/10)
 
 
 
