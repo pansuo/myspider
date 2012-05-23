@@ -9,7 +9,7 @@ import sys
 argc = len(sys.argv)
 keyword = None
 if argc > 1:
-	keyword = sys.argv[1]
+	keyword = sys.argv[1] #shame that chinese parm pass to python cannot be decoded well
 else:
 	keyword = u'陈光诚'
 
