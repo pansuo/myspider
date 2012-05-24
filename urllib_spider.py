@@ -6,17 +6,20 @@ import urllib
 import os
 import sys
 import time
+#import codecs
 
-argc = len(sys.argv)
-keyword = None
-if argc > 1:
-	keyword = sys.argv[1] #shame that chinese parm pass to python cannot be decoded well
+in_encoding = sys.stdin.encoding
+print 'in_encoding is '+str(in_encoding)
+keyword = raw_input("input the keyword: ")
+keyword = keyword.decode(in_encoding)
+
+if len(sys.argv) is 2:
+	maxpage = int(sys.argv[1])
 else:
-	keyword = u'陈光诚'
+	maxpage = 30
 
 #keyword must be encoded into 
 #gbk or gb18030
-
 kw_gbk = keyword.encode('gb18030') 
 m = {'wd':kw_gbk,}
 keyword_url = urllib.urlencode(m)
@@ -30,8 +33,6 @@ header_page0 = {
  'Referer':'http://www.baidu.com/',
  'Cookie':'BAIDUID=79741D75BB0E5D383F2D6FF9AE0827B6:FG=1; BDUT=rv3679741D75BB0E5D383F2D6FF9AE0827B613686caba690; BDREFER=%7Burl%3A%22http%3A//news.baidu.com/%22%2Cword%3A%22%22%7D; BDRCVFR[eHt_ClL0b_s]=mk3SLVN4HKm'
 	}
-
-maxpage = 30
 
 def check_nextPage(content,page):
 	str1 = '<a href="s?%s&pn=%d&usm=3">%d</a>' %(keyword_url,page+10,(page/10)+2)
