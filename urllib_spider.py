@@ -31,15 +31,15 @@ header_page0 = {
  'Cookie':'BAIDUID=79741D75BB0E5D383F2D6FF9AE0827B6:FG=1; BDUT=rv3679741D75BB0E5D383F2D6FF9AE0827B613686caba690; BDREFER=%7Burl%3A%22http%3A//news.baidu.com/%22%2Cword%3A%22%22%7D; BDRCVFR[eHt_ClL0b_s]=mk3SLVN4HKm'
 	}
 
-maxpage = 50
+maxpage = 30
 
 def check_nextPage(content,page):
 	str1 = '<a href="s?%s&pn=%d&usm=3">%d</a>' %(keyword_url,page+10,(page/10)+2)
-	print 'search for:%s' % str1
+#	print 'search for:%s' % str1
 	if content.find(str1) == -1:
-		print 'search failed'
+		print 'page%d is not exist'%(page/10+2)
 		return False
-	print 'search ok'
+	print 'page%d exist'%(page/10+2)
 	return True
 
 if __name__ == '__main__':	
@@ -81,7 +81,7 @@ if __name__ == '__main__':
 		lastUrl = curUrl
 		curPage += 10
 	else:
-		print 'all %d pages downloaded' % (curPage/10)
+		print 'all %d pages downloaded (app let max download page be %d)' % (curPage/10,maxpage)
 	
 
 	endT = time.clock()
