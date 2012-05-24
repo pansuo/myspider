@@ -5,6 +5,7 @@ import urllib2
 import urllib
 import os
 import sys
+import time
 
 argc = len(sys.argv)
 keyword = None
@@ -43,8 +44,8 @@ def check_nextPage(content,page):
 
 if __name__ == '__main__':	
 	inputTime = 1120
+	startT = time.clock()
 #	curUrl = 'http://www.baidu.com/s?wd=%s&rsv_bp=0&rsv_spt=3&inputT=%d' %(keyword,inputTime)
-
 #	Yes! must use keyword_url in below curUrl or urllib2.urlopen will report 
 #	UnicodeEncodError
 	curUrl = 'http://www.baidu.com/s?%s&rsv_bp=0&rsv_spt=3&inputT=%d' %(keyword_url,inputTime) 
@@ -52,7 +53,6 @@ if __name__ == '__main__':
 #get the first page 
 	content = urllib2.urlopen(req).read()
 	handler = open('urlsave_all.htm','w')
-	#handler.write(content)
 	str_result = content
 	lastUrl = curUrl
 	curPage = 10
@@ -75,16 +75,17 @@ if __name__ == '__main__':
 
 		if check_nextPage(content,curPage) == False:
 			isNextPageExist = False
-			
-		#handler.write('''<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=3>''')
-		#handler.write(content)
+
 		str_result += '''<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="100%" color=#987cb9 SIZE=3>'''
 		str_result += content
 		lastUrl = curUrl
 		curPage += 10
 	else:
 		print 'all %d pages downloaded' % (curPage/10)
+	
 
+	endT = time.clock()
+	print 'total time used %.2f seconds' % endT
 	handler.write(str_result)
 	handler.close()
 
