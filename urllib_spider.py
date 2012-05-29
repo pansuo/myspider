@@ -44,9 +44,16 @@ header_page0 = {
 
 
 def check_nextPage(content,page):
-	str1 = '<a href="s?%s&pn=%d">%d</a>' %(keyword_url1,page+10,(page/10)+2)
-	print 'search string:%s' % str1
-	if content.find(str1) == -1:
+	str01 = '<a href="s?'
+	str02 = '<a href="/s?'
+	str_key = '%s&pn=%d&ie=utf-8">%d</a>' %(keyword_url2,page+10,(page/10)+2)
+	str1 = str01+str_key
+	str2 = str02+str_key
+	
+	print 'search str1:%s' % str1
+	print 'search str2:%s' % str2
+
+	if content.find(str1) == -1 and content.find(str2) == -1:
 		print 'page%d is not exist'%(page/10+2)
 		return False
 	print 'page%d exist'%(page/10+2)
@@ -79,7 +86,7 @@ if __name__ == '__main__':
 		 'Referer':lastUrl,
 		 'Cookie':'BAIDUID=79741D75BB0E5D383F2D6FF9AE0827B6:FG=1; BDUT=rv3679741D75BB0E5D383F2D6FF9AE0827B613686caba690; BDREFER=%7Burl%3A%22http%3A//news.baidu.com/%22%2Cword%3A%22%22%7D; BDRCVFR[eHt_ClL0b_s]=mk3SLVN4HKm'
 		}
-		curUrl = 'http://www.baidu.com/s?%s&pn=%d' %(keyword_url2,curPage) #&usm=3
+		curUrl = 'http://www.baidu.com/s?%s&pn=%d&ie=utf8' %(keyword_url2,curPage) #&usm=3
 		req = urllib2.Request(url=curUrl,data=None,headers=header_pageX)
 		content = urllib2.urlopen(req).read()
 
